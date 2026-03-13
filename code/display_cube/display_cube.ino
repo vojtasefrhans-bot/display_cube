@@ -1,3 +1,9 @@
+// for encoder.ino
+const int pinA = 29;
+const int pinB = 28;
+const int pinSW = 27;
+volatile long encoderValue = 0;
+
 bool displayFace = 0;
 
 void setup(){
@@ -15,7 +21,7 @@ void loop(){
   static unsigned long lastDisplay = 0;
   if (millis() - lastDisplay >= 30){
     if(displayFace){
-      displayTest1(encoderValue%100);
+      displayTest1();
     }else{
       displayTest2(encoderValue%15);
     }

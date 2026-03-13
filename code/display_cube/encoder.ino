@@ -1,9 +1,4 @@
 //takes care of the encoder input
-const int pinA = 29;
-const int pinB = 28;
-const int pinSW = 27;
-
-volatile long encoderValue = 0;
 
 void encISR() {
   static uint8_t lastA = HIGH;
