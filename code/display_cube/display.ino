@@ -1,6 +1,5 @@
 //for animations and faces
-#include <U8g2lib.h>
-U8G2_SSD1306_128X64_NONAME_F_4W_SW_SPI u8g2(U8G2_R0, 2, 3, U8X8_PIN_NONE, 1, 0);  //sck=2, sda=3, res=0, dc=1
+
 
 static unsigned long lastDisplay = 0;  // VENKU! Statická proměnná
 static uint8_t lastCislo;
