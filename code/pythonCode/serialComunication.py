@@ -4,7 +4,7 @@ import time
 import keyboard
 
 # Nahraď COM3 svým portem (Device Manager > Ports)
-port = 'COM9'
+port = 'COM6'
 ser = serial.Serial(port, 115200, timeout=1)
 time.sleep(2)  # Čekej na inicializaci
 while not keyboard.is_pressed('c'): 
