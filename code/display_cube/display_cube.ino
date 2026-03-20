@@ -15,8 +15,9 @@ const int pinB = 28;
 const int pinSW = 27;
 volatile long encoderValue = 0;
 
+// for this .ino xd
 int displayFace = 0;
-
+uint8_t amountOfFaces = 2;
 void setup(){
   Serial.begin(115200);
 
@@ -36,7 +37,7 @@ void loop(){
   }*/
 
   displayFace = abs(encoderValue%2); //%numberOfDisplays
-  Serial.println(displayFace);
+  //Serial.println(displayFace);
 
   static uint lastDisplayFace = 0;
   if(lastDisplayFace != displayFace){
@@ -44,6 +45,8 @@ void loop(){
     lastDisplayFace = displayFace;
   }
 
-  if(displayFace == 0) chart(cpu);
-  if(displayFace == 1) chart(ram);
+  if(displayFace == 0){chart(cpu); chartHUD(displayFace + 1, amountOfFaces, "CPU");}
+  if(displayFace == 1){chart(ram); chartHUD(displayFace + 1, amountOfFaces, "RAM");}
+  
+  u8g2.sendBuffer();
 }

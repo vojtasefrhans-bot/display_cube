@@ -14,11 +14,11 @@ json_string = json.dumps(data, indent=4, ensure_ascii=False)
 
 while True:
     data = {
-    "cpu": psutil.cpu_percent(interval=0.25),
+    "cpu": psutil.cpu_percent(interval=0.2),
     "ram": psutil.virtual_memory().percent
     }
     json_string = json.dumps(data)
     ser.write(json_string.encode('utf-8') + b'\n')
     ser.flush()
-    time.sleep(0.25)
+    time.sleep(0.2)
 ser.clodse()

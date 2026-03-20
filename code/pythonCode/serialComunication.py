@@ -1,16 +1,24 @@
 import psutil
+import json
 import serial
 import time
-import keyboard
 
-# Nahraď COM3 svým portem (Device Manager > Ports)
 port = 'COM6'
 ser = serial.Serial(port, 115200, timeout=1)
 time.sleep(2)  # Čekej na inicializaci
-while not keyboard.is_pressed('c'): 
-    cpu = psutil.cpu_percent(interval=0.25)
-    ser.write(f"{cpu:.1f}\n".encode())
-    time.sleep(0.05)
-ser.close()
+data = {
+    "cpu": 0,
+    "ram": 0
+}
+json_string = json.dumps(data, indent=4, ensure_ascii=False)
 
-print(f"Disk: {psutil.disk_usage('/').percent}%")
+while True:
+    data = {
+    "cpu": psutil.cpu_percent(interval=0.2),
+    "ram": psutil.virtual_memory().percent
+    }
+    json_string = json.dumps(data)
+    ser.write(json_string.encode('utf-8') + b'\n')
+    ser.flush()
+    time.sleep(0.2)
+ser.clodse()
