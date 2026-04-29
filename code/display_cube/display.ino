@@ -8,12 +8,12 @@ void zeroSeznam(){
   }
 }
 
-  void handleSeznam(uint8_t newValue){
-    for(uint8_t i = 100; i > 0; i--){
-      seznam[i] = seznam[i - 1];
-    }
-    seznam[0] = newValue;
+void handleSeznam(uint8_t newValue){
+  for(uint8_t i = 100; i > 0; i--){
+    seznam[i] = seznam[i - 1];
   }
+  seznam[0] = newValue;
+}
 
 void displayBegin(){
   u8g2.begin();
@@ -44,7 +44,7 @@ void chartHUD(uint8_t actualFace, uint8_t maxFaces, const char* name){
   u8g2.drawBox(0, 48, 128, 64);
   u8g2.setFont(u8g2_font_5x7_tf); //smaller font for the percantage
   u8g2.drawStr(10, 48, "0%"); /*10px wide*/ u8g2.drawLine(28, 43, 24, 43);/*important lines*/ u8g2.drawLine(28, 34, 26, 34);  //les important lines
-  u8g2.drawStr(5, 30, "50%"); /*15px wide*/ u8g2.drawLine(28, 24, 24, 24);/*important lines*/ u8g2.drawLine(28, 14, 26, 14);
+  u8g2.drawStr(5, 30, "50%"); /*15px wide*/ u8g2.drawLine(28, 25, 24, 25);/*important lines*/ u8g2.drawLine(28, 15, 26, 15);
   u8g2.drawStr(0, 11, "100%");/*20px wide*/ u8g2.drawLine(28, 5, 24, 5);  /*important lines*/
 
   u8g2.setDrawColor(0);     //creates a negative text
@@ -52,4 +52,13 @@ void chartHUD(uint8_t actualFace, uint8_t maxFaces, const char* name){
   u8g2.drawStr(xName, 59, name);
   u8g2.drawStr(128 - wFace - 5, 61, face.c_str());
   u8g2.setDrawColor(1); //back to normal
+}
+
+void Colums(uint8_t v1, const char* name1, uint8_t v2, const char* name2, uint8_t v3, const char* name3, uint8_t v4, const char* name4){
+  int cislo1 = constrain(map(v1, 0, 100, 0, 42), 0, 42);
+  int cislo2 = constrain(map(v2, 0, 100, 0, 42), 0, 42);
+  int cislo3 = constrain(map(v3, 0, 100, 0, 42), 0, 42);
+  int cislo4 = constrain(map(v4, 0, 100, 0, 42), 0, 42);
+
+  u8g2.drawFrame(100)
 }

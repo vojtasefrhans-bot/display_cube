@@ -24,17 +24,17 @@ void handleSerialBuffer(){
 
   if (jsonDokonceny) {
     JsonDocument jsonDoc;  // Automaticky volí static/dynamic 
-    
-    //parsovani
-    DeserializationError chyba = deserializeJson(jsonDoc, inputBuffer);
+  
+    DeserializationError chyba = deserializeJson(jsonDoc, inputBuffer); //parsovani
     
     if (chyba) {
       Serial.print("CHYBA: ");
       Serial.println(chyba.c_str());
     } else {
-      // čtení
       cpu = jsonDoc["cpu"].as<int>();
       ram = jsonDoc["ram"].as<int>();
+      disk = jsonDoc["disk"].as<int>();
+      gpu =  jsonDoc["gpu"].as<int>();
     }
     
     inputBuffer = "";
