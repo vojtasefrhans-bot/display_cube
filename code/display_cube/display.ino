@@ -1,4 +1,5 @@
 //for animations and faces
+
 static unsigned long lastDisplay = 0;
 uint8_t seznam[101];
 
@@ -13,12 +14,6 @@ void handleSeznam(uint8_t newValue){
     seznam[i] = seznam[i - 1];
   }
   seznam[0] = newValue;
-}
-
-void displayBegin(){
-  u8g2.begin();
-  u8g2.setFlipMode(1);
-  //Serial.println("Start displaye");
 }
 
 void chart(uint8_t value){    //make a chart of the input value (from 0 to 100), it creates 1 colum per frame (5hz rn)
@@ -54,11 +49,18 @@ void chartHUD(uint8_t actualFace, uint8_t maxFaces, const char* name){
   u8g2.setDrawColor(1); //back to normal
 }
 
-void Colums(uint8_t v1, const char* name1, uint8_t v2, const char* name2, uint8_t v3, const char* name3, uint8_t v4, const char* name4){
+void colums(uint8_t v1, const char* name1, uint8_t v2, const char* name2, uint8_t v3, const char* name3, uint8_t v4, const char* name4){
   int cislo1 = constrain(map(v1, 0, 100, 0, 42), 0, 42);
   int cislo2 = constrain(map(v2, 0, 100, 0, 42), 0, 42);
   int cislo3 = constrain(map(v3, 0, 100, 0, 42), 0, 42);
   int cislo4 = constrain(map(v4, 0, 100, 0, 42), 0, 42);
 
-  u8g2.drawFrame(100)
+  //u8g2.drawFrame(100)
+}
+
+void displayInit(){
+
+  u8g2.begin();
+  u8g2.setFlipMode(1);
+  //Serial.println("Start displaye");
 }

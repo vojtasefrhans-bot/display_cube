@@ -1,8 +1,6 @@
-//should be running on 1 core and the rest of the code on the other thus i can afford to have blocking delay()
-
 #include <ArduinoJson.h>
 
-void Jsonbegin(){ 
+void JsonBegin(){ 
   inputBuffer.reserve(200);
   posledniJson = millis();
 }
@@ -23,7 +21,7 @@ void handleSerialBuffer(){
   }
 
   if (jsonDokonceny) {
-    JsonDocument jsonDoc;  // Automaticky volí static/dynamic 
+    JsonDocument jsonDoc;
   
     DeserializationError chyba = deserializeJson(jsonDoc, inputBuffer); //parsovani
     
